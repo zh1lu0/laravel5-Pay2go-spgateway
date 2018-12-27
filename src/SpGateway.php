@@ -73,7 +73,7 @@ class SpGateway
 
         $this->setExpireDate(Config::get('pay2go.ExpireDays', 7));
         $this->setLoginType(Config::get('pay2go.LoginType', false));
-        $this->setVersion(Config::get('pay2go.Version', '1.4'));
+        $this->setVersion(Config::get('pay2go.Version', '1.5'));
         $this->setLangType(Config::get('pay2go.LangType', 'zh-tw'));
         $this->setEmailModify(Config::get('pay2go.EmailModify', false));
         $this->setPaymentMethod(Config::get('pay2go.paymentMethod', $this->getDefaultPaymentMethod()));
@@ -349,16 +349,15 @@ class SpGateway
      */
     public function submitOrder()
     {
-        $parameter = [
-            'MerchantID' =>  $this->MerchantID,
-            'RespondType' => $this->RespondType,
-            'TimeStamp' => $this->TimeStamp,
-            'Version' => $this->Version,
-            'MerchantOrderNo' =>  $this->MerchantOrderNo,
-            'Amt' => $this->Amt,
-            'ItemDesc' => $this->ItemDesc,
-            'NotifyURL' => $this->NotifyURL
-        ];
+        $orderFields = explode(", ","MerchantID,RespondType,TimeStamp,Version,LangType,MerchantOrderNo,Amt,ItemDesc,TradeLimit,ExpireDate,ReturnURL,NotifyURL,CustomerURL,ClientBackURL,Email,EmailModify,LoginType,OrderComment");
+
+        $parameter = [];
+
+        foreach ($orderFields as $key) {
+            if(isset($this->{$key})) {
+                $parameter[$key] = $this->{$key};
+            }
+        }
 
         $this->encryptDataByAES($parameter);
 
