@@ -349,7 +349,7 @@ class SpGateway
      */
     public function submitOrder()
     {
-        $orderFields = explode(", ","MerchantID,RespondType,TimeStamp,Version,LangType,MerchantOrderNo,Amt,ItemDesc,TradeLimit,ExpireDate,ReturnURL,NotifyURL,CustomerURL,ClientBackURL,Email,EmailModify,LoginType,OrderComment");
+        $orderFields = explode(",","MerchantID,RespondType,TimeStamp,Version,LangType,MerchantOrderNo,Amt,ItemDesc,TradeLimit,ExpireDate,ReturnURL,NotifyURL,CustomerURL,ClientBackURL,Email,EmailModify,LoginType,OrderComment");
 
         $parameter = [];
 
