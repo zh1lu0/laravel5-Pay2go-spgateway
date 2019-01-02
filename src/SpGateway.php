@@ -131,11 +131,15 @@ class SpGateway
         $this->CreditRed = ($this->CREDIT and $payments_config_array['CREDIT']['CreditRed']) ? 1 : 0;
         $this->InstFlag = ($this->CREDIT and $payments_config_array['CREDIT']['InstFlag']) ? $payments_config_array['CREDIT']['InstFlag'] : 0;
 
-        $this->UNIONPAY = $payments_config_array['UNIONPAY']? $payments_config_array['UNIONPAY'] : 0;
+        $this->ANDROIDPAY = $payments_config_array['ANDROIDPAY']? 1 : 0;
+        $this->SAMSUNGPAY = $payments_config_array['SAMSUNGPAY']? 1 : 0;
+        $this->UNIONPAY = $payments_config_array['UNIONPAY']? 1 : 0;
         $this->WEBATM = $payments_config_array['WEBATM'] ? 1 : 0;
         $this->VACC = $payments_config_array['VACC'] ? 1 : 0;
         $this->CVS = $payments_config_array['CVS'] ? 1 : 0;
         $this->BARCODE = $payments_config_array['BARCODE'] ? 1 : 0;
+        $this->P2G = $payments_config_array['P2G'] ? 1 : 0;
+        $this->CVSCOM = $payments_config_array['CVSCOM'] ? 1 : 0;
 
         return $this;
     }
@@ -349,7 +353,7 @@ class SpGateway
      */
     public function submitOrder()
     {
-        $orderFields = explode(",","MerchantID,RespondType,TimeStamp,Version,LangType,MerchantOrderNo,Amt,ItemDesc,TradeLimit,ExpireDate,ReturnURL,NotifyURL,CustomerURL,ClientBackURL,Email,EmailModify,LoginType,OrderComment,CREDIT,CreditRed,InstFlag,UNIONPAY,WEBATM,VACC,CVS,BARCODE");
+        $orderFields = explode(",","MerchantID,RespondType,TimeStamp,Version,LangType,MerchantOrderNo,Amt,ItemDesc,TradeLimit,ExpireDate,ReturnURL,NotifyURL,CustomerURL,ClientBackURL,Email,EmailModify,LoginType,OrderComment,CREDIT,ANDROIDPAY,SAMSUNGPAY,CreditRed,InstFlag,UNIONPAY,WEBATM,VACC,CVS,BARCODE,P2G,CVSCOM");
 
         $parameter = [];
 
@@ -488,6 +492,7 @@ class SpGateway
             'CVS' => false,
             'BARCODE' => false,
             'P2G' => false,
+            'CVSCOM' => false,
         ];
     }
 }

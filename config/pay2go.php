@@ -29,7 +29,7 @@ return [
     /*
      * 串接版本
      */
-    'Version' => '1.2',
+    'Version' => '1.5',
 
     /*
      * 語系
@@ -143,15 +143,19 @@ return [
          * 以逗號方式開啟多種分期
          */
         'CREDIT' => [
-            'enable' => false,
+            'enable' => true,
             'CreditRed' => false,
             'InstFlag' => 0,
         ],
+        'ANDROIDPAY' => false,
+        'SAMSUNGPAY' => false,
         'UNIONPAY' => false,
-        'WEBATM' => true,
-        'VACC' => true,
-        'CVS' => true,
-        'BARCODE' => true,
+        'WEBATM' => false,
+        'VACC' => false,
+        'CVS' => false,
+        'BARCODE' => false,
+        'P2G' => false,
+        'CVSCOM' => false,
 
 
         'PERIODIC' => false,
