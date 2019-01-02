@@ -73,7 +73,7 @@ return [
      *
      * 僅接受 port 80 or 443
      */
-    'ReturnURL' => env('CASH_ReturnUrl') != null ? env('APP_URL') . env('CASH_ReturnUrl') : null,
+    'ReturnURL' => env('CASH_ReturnUrl'),
 
     /*
      * 付款完成-後的通知連結
@@ -81,7 +81,7 @@ return [
      * 以幕後方式回傳給商店相關支付結果資料
      * 僅接受 port 80 or 443
      */
-    'NotifyURL' => env('CASH_NotifyURL') != null ? env('APP_URL') . env('CASH_NotifyURL') : null,
+    'NotifyURL' => env('CASH_NotifyURL'),
 
     /*
      * 商店取號網址
@@ -89,14 +89,14 @@ return [
      * 此參數若為空值，則會顯示取號結果在智付寶頁面。
      * default: null
      */
-    'CustomerURL' => null,
+    'CustomerURL' => env('CASH_CustomerURL'),
 
     /*
      * 付款取消-返回商店網址
      *
      * default: null
      */
-    'ClientBackURL' => env('CASH_Client_BackUrl') != null ? env('APP_URL') . env('CASH_Client_BackUrl') : null,
+    'ClientBackURL' => env('CASH_Client_BackUrl'),
 
     /*
      * 付款人電子信箱是否開放修改

@@ -217,7 +217,7 @@ class Pay2Go
      */
     public function setReturnURL($return_url)
     {
-        $this->ReturnURL = $return_url;
+        $this->ReturnURL = url($return_url);
 
         return $this;
     }
@@ -231,7 +231,7 @@ class Pay2Go
     public function setNotifyURL($notify_url)
     {
         if ($notify_url != null)
-            $this->NotifyURL = $notify_url;
+            $this->NotifyURL = url($notify_url);
 
         return $this;
     }
@@ -245,7 +245,7 @@ class Pay2Go
     public function setCustomerURL($customer_url)
     {
         if ($customer_url != null)
-            $this->CustomerURL = $customer_url;
+            $this->CustomerURL = url($customer_url);
 
         return $this;
     }
@@ -259,7 +259,7 @@ class Pay2Go
     public function setClientBackURL($client_back_url)
     {
         if ($client_back_url != null)
-            $this->ClientBackURL = $client_back_url;
+            $this->ClientBackURL = url($client_back_url);
 
         return $this;
     }
