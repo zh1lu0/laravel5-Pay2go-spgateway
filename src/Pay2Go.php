@@ -136,15 +136,20 @@ class Pay2Go
      */
     public function setPaymentMethod($payments_config_array)
     {
-        $this->CREDIT = $payments_config_array['CREDIT']['enable'] ? 1 : 0;
-        $this->CreditRed = ($this->CREDIT and $payments_config_array['CREDIT']['CreditRed']) ? 1 : 0;
-        $this->InstFlag = ($this->CREDIT and $payments_config_array['CREDIT']['InstFlag']) ? $payments_config_array['CREDIT']['InstFlag'] : 0;
+        if($payments_config_array['CREDIT']['enable']) {
+            $this->CREDIT = 1;
 
-        $this->UNIONPAY = $payments_config_array['UNIONPAY']? $payments_config_array['UNIONPAY'] : 0;
-        $this->WEBATM = $payments_config_array['WEBATM'] ? 1 : 0;
-        $this->VACC = $payments_config_array['VACC'] ? 1 : 0;
-        $this->CVS = $payments_config_array['CVS'] ? 1 : 0;
-        $this->BARCODE = $payments_config_array['BARCODE'] ? 1 : 0;
+            if($payments_config_array['CREDIT']['CreditRed'])
+                $this->CreditRed = 1;
+            if($payments_config_array['CREDIT']['InstFlag'])
+                $this->InstFlag = $payments_config_array['CREDIT']['InstFlag'];
+        }
+
+        $otherMethods = ['UNIONPAY','ANDROIDPAY','SAMSUNGPAY','WEBATM','VACC','CVS','BARCODE','P2G','CVSCOM'];
+        foreach ($otherMethods as $method) {
+            if($payments_config_array[$method])
+                $this->{$method} = 1;
+        }
 
         return $this;
     }
@@ -217,7 +222,8 @@ class Pay2Go
      */
     public function setReturnURL($return_url)
     {
-        $this->ReturnURL = url($return_url);
+        if($return_url != null)
+            $this->ReturnURL = url($return_url);
 
         return $this;
     }
